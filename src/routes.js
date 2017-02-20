@@ -5,7 +5,7 @@
 import React from 'react'
 import {Route, IndexRoute} from 'react-router'
 /*eslint-enable no-unused-vars*/
-import App from './components/App'
+import App from './components/app'
 import HomePage from './components/home/home.component'
 import AboutPage from './components/about/about.component'
 import CoursePage from './components/course/course.component'

@@ -15,7 +15,7 @@ class Header extends React.Component {
         {'  |  '}
         <Link to='/about' activeClassName='active'>About</Link>
         {'  |  '}
-        <Link to='/course' activeClassName='active'>Course</Link>
+        <Link to='/courses' activeClassName='active'>Course</Link>
       </nav>
     )
   }

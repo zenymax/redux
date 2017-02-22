@@ -8,12 +8,15 @@ import {Route, IndexRoute} from 'react-router'
 import App from './components/app'
 import HomePage from './components/home/home.component'
 import AboutPage from './components/about/about.component'
-import CoursePage from './components/course/course.component'
+import CoursePageList from './components/course/course.component'
+import CoursePage from './components/course/CoursePage'
 
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={HomePage}></IndexRoute>
     <Route path='/about' component={AboutPage}></Route>
+    <Route path='/courses' component={CoursePageList}/>
     <Route path='/course' component={CoursePage}/>
+    <Route path='/course/:id' component={CoursePage}/>
   </Route>
 )

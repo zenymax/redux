@@ -14,8 +14,10 @@ import routes from './routes'
 import './styles/styles.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import configureStore from './store/configure.store'
+import {loadCourse} from './actions/course.action'
 
 const store = configureStore()
+store.dispatch(loadCourse())
 
 render(
   <Provider store={store}>

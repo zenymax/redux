@@ -5,7 +5,7 @@ import React from 'react'
 import TextInput from '../common/textinput.component'
 import SelectInput from '../common/selectinput.component'
 
-const CourseForm = ({loading, course, allAuthors, onChange, onSave, errors}) => {
+const CourseForm = ({saving, course, allAuthors, onChange, onSave, errors}) => {
   return (
     <form>
       <h1>Manage Course</h1>
@@ -24,21 +24,21 @@ const CourseForm = ({loading, course, allAuthors, onChange, onSave, errors}) => 
         onChange={onChange}
         error={errors.authorId}/>
       <TextInput
-        name="Category"
+        name="category"
         label="Category"
         value={course.category}
         onChange={onChange}
         error={errors.category}/>
       <TextInput
-        name="Length"
+        name="length"
         label="Length"
         value={course.length}
         onChange={onChange}
         error={errors.length}/>
       <input
         type="submit"
-        disabled={loading}
-        value={loading? 'Saving...':'Save'}
+        disabled={saving}
+        value={saving? 'Saving...':'Save'}
         className="btn btn-primary"
         onClick={onSave}/>
 

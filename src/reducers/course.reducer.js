@@ -1,7 +1,7 @@
 import types from '../constant'
-import initialState from './course.reducer'
+import initialState from './initialState'
 
-export default function courseReducer(state = initialState, action) {
+export default function courseReducer(state = initialState.course, action) {
   switch (action.type) {
     case types.LOAD_COURSES_SUCCESS:
       return action.courses

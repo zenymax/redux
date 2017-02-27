@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/course.action'
 import CourseForm from './course-form.component'
+import {authorsFormattedForDropdown} from '../../selectors/selectors'
 import Toastr from 'toastr'
 
-class CoursePage extends React.Component {
+export class CoursePage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -32,8 +33,24 @@ class CoursePage extends React.Component {
       return this.setState({course: course})
     }
 
+    courseFormIsValid() {
+      let formIsValid = true
+      let errors = {}
+
+      if (this.state.course.title.length < 5) {
+        errors.title = 'Title must be at least 5 characters.'
+        formIsValid = false
+      }
+      this.setState({errors})
+      return formIsValid
+    }
+
     saveCourseClick(event) {
       event.preventDefault()
+      if (!this.courseFormIsValid()) {
+        return
+      }
+
       this.setState({saving: true})
       this.props.actions.saveCourse(this.state.course)
         .then(() => this.redirect())
@@ -50,7 +67,6 @@ class CoursePage extends React.Component {
     }
 
     render() {
-      console.log('debug here ', this.props);
         return (
           <CourseForm
             course={this.state.course}
@@ -85,29 +101,14 @@ function getCourseById(courses, id) {
 function mapStateToProps(state, ownProps) {
     let course = {id:'', watchHref: '', title: '', authorId: '', length: '', category: ''}
 
-    // const authorsFormattedForDropdown = state.author.map(author => function() {
-    //   return {
-    //     value: author.id,
-    //     text: author.firstName+' '+author.lastName
-    //   }
-    // })
-
     const courseId = ownProps.params.id // from path: /course/:id
     if (courseId && state.course.length > 0) {
       course = getCourseById(typeof (state.course) === 'object' ? state.course : [], courseId)
     }
 
-    const tmp = []
-    for (var i=0;i<state.author.length;i++) {
-      tmp.push({
-        value: state.author[i].id,
-        text: state.author[i].firstName+' '+state.author[i].lastName
-      })
-    }
-
     return {
       course: course,
-      authors: tmp
+      authors: authorsFormattedForDropdown(state.authors)
     };
 }
 

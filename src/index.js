@@ -1,7 +1,7 @@
 /**
  * Created by zenymax on 2/10/17.
  */
-
+/*eslint-disable import/default*/
 /*eslint-disable no-unused-vars*/
 import 'babel-polyfill'
 import React from 'react'
@@ -14,7 +14,7 @@ import routes from './routes'
 import './styles/styles.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/toastr/build/toastr.min.css'
-import configureStore from './store/configure.store'
+import configureStore from './store/configure.store.dev'
 import {loadCourse} from './actions/course.action'
 import {loadAuthor} from './actions/authorAction'
 
